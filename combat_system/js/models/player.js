@@ -1,4 +1,4 @@
-import { Character } from "./character";
+import { Character } from "./character.js";
 
 export class Player extends Character {
     constructor(name, level, maxHealth, resourceType, maxResource) {
@@ -6,7 +6,7 @@ export class Player extends Character {
         this.resourceType = resourceType;
         this.maxResource = maxResource;
         this.resource = maxResource;
-        }
+    }
 
     attack(target){
         const damage = this.level * 3;
@@ -17,5 +17,4 @@ export class Player extends Character {
     useAbility(target){
         return 0;
     }
-
-    }
+}

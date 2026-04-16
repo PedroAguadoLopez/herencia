@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Combate RPG</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="lolsimbol.ico" type="image/png">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="selection-screen">
+        <h1>Elige tu Héroe</h1>
+        <div class="controls">
+            <button id="btn-select-warrior">Guerrero</button>
+            <button id="btn-select-mage">Mago</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="battle-screen">
         <h1>Arena de Combate</h1>
+        <div id="kill-counter" style="margin-bottom: 10px; font-weight: bold; font-size: 1.2rem; color: #f1c40f;">
+            Enemigos derrotados: 0
+        </div>
         <div class="battlefield">
             <div id="player-stats" class="card hero-card"></div>
             <div id="enemy-stats" class="card enemy-card"></div>
@@ -16,6 +28,7 @@
         <div class="controls">
             <button id="btn-attack">Ataque Básico</button>
             <button id="btn-ability">Habilidad Especial</button>
+            <button id="btn-next-battle" class="hidden">Siguiente Combate</button>
         </div>
         <div id="log" class="log-box"></div>
     </div>

@@ -16,6 +16,10 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+.hidden {
+    display: none !important;
+}
+
 .battlefield {
     display: flex;
     justify-content: space-between;
@@ -67,4 +71,9 @@ button:disabled {
     overflow-y: auto;
     border-radius: 5px;
     text-align: left;
+}
+
+#btn-next-battle {
+    background: #3498db;
+    margin-top: 10px;
 }
