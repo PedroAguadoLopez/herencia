@@ -2,7 +2,7 @@ import { Player } from './player.js';
 
 export class Warrior extends Player {
     constructor(name, level) {
-        super(name, level, 150, 'Stamina', 100);
+        super(name, level, 150, 'Maná', 100);
     }
 
     useAbility(target) {

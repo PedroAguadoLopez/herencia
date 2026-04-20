@@ -31,12 +31,12 @@ function startGame(selectedClass) {
     const enemyLevel = getRandomLevel(3, 8);
 
     if (selectedClass === 'warrior') {
-        player = new Warrior("Conan", playerLevel);
+        player = new Warrior("Garen", playerLevel);
     } else {
-        player = new Mage("Gandalf", playerLevel);
+        player = new Mage("Ryze", playerLevel);
     }
 
-    enemy = new Orc("Grommash", enemyLevel);
+    enemy = new Orc("Minion", enemyLevel);
 
     selectionScreen.classList.add('hidden');
     battleScreen.classList.remove('hidden');
