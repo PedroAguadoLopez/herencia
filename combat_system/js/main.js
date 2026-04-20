@@ -1,6 +1,12 @@
-import { Warrior } from './models/warrior.js';
-import { Mage } from './models/mage.js';
-import { Orc } from './models/orc.js';
+import { Warrior } from './models/garen.js';
+import { Mage } from './models/ryze.js';
+import { Darius } from './models/darius.js';
+import { Ashe } from './models/ashe.js';
+import { Yasuo } from './models/yasuo.js';
+import { Lux } from './models/lux.js';
+import { Ahri } from './models/ahri.js';
+import { Veigar } from './models/veigar.js';
+import { Orc } from './models/Minion.js';
 
 let player;
 let enemy;
@@ -9,9 +15,7 @@ let battleActive = false;
 
 const selectionScreen = document.getElementById('selection-screen');
 const battleScreen = document.getElementById('battle-screen');
-const btnSelectWarrior = document.getElementById('btn-select-warrior');
-const btnSelectMage = document.getElementById('btn-select-mage');
-
+const selectionCards = document.querySelectorAll('.selection-card');
 const logArea = document.getElementById('log');
 const playerStats = document.getElementById('player-stats');
 const enemyStats = document.getElementById('enemy-stats');
@@ -24,18 +28,24 @@ function getRandomLevel(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function startGame(selectedClass) {
+function startGame(championId) {
     killCount = 0;
     battleActive = true;
     const playerLevel = getRandomLevel(3, 7);
     const enemyLevel = getRandomLevel(3, 8);
 
-    if (selectedClass === 'warrior') {
-        player = new Warrior("Garen", playerLevel);
-    } else {
-        player = new Mage("Ryze", playerLevel);
-    }
+    const champions = {
+        'garen': () => new Warrior("Garen", playerLevel),
+        'darius': () => new Darius("Darius", playerLevel),
+        'ashe': () => new Ashe("Ashe", playerLevel),
+        'yasuo': () => new Yasuo("Yasuo", playerLevel),
+        'ryze': () => new Mage("Ryze", playerLevel),
+        'lux': () => new Lux("Lux", playerLevel),
+        'ahri': () => new Ahri("Ahri", playerLevel),
+        'veigar': () => new Veigar("Veigar", playerLevel)
+    };
 
+    player = champions[championId]();
     enemy = new Orc("Minion", enemyLevel);
 
     selectionScreen.classList.add('hidden');
@@ -44,11 +54,15 @@ function startGame(selectedClass) {
     updateUI();
 }
 
-btnSelectWarrior.addEventListener('click', () => startGame('warrior'));
-btnSelectMage.addEventListener('click', () => startGame('mage'));
+selectionCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        startGame(id);
+    });
+});
 
 function updateUI() {
-    killCounterDisplay.textContent = `Enemigos derrotados: ${killCount}`;
+    killCounterDisplay.textContent = `Minions Farmeados: ${killCount}`;
     
     playerStats.innerHTML = `
         <strong>${player.name} (Lvl ${player.level})</strong><br>
@@ -76,7 +90,6 @@ function updateUI() {
             
             logMessage(`¡Victoria! Recuperas ${healAmount} HP y ${resourceAmount} de ${player.resourceType}.`);
             nextBattleBtn.classList.remove('hidden');
-            updateUI(); 
         } else {
             logMessage("¡Has sido derrotado!");
         }
@@ -92,7 +105,6 @@ function logMessage(msg) {
 
 function enemyTurn() {
     if (!enemy.isAlive) return;
-    
     const dmg = enemy.attack(player);
     logMessage(`${enemy.name} ataca causando ${dmg} de daño.`);
     updateUI();
@@ -102,7 +114,6 @@ attackBtn.addEventListener('click', () => {
     const dmg = player.attack(enemy);
     logMessage(`${player.name} ataca y causa ${dmg} de daño.`);
     updateUI();
-    
     if (enemy.isAlive) setTimeout(enemyTurn, 1000);
 });
 
@@ -119,13 +130,11 @@ abilityBtn.addEventListener('click', () => {
 
 nextBattleBtn.addEventListener('click', () => {
     const enemyLevel = getRandomLevel(3, 8);
-    enemy = new Orc("Grommash", enemyLevel);
-    
+    enemy = new Orc("Minion", enemyLevel);
     battleActive = true;
     attackBtn.disabled = false;
     abilityBtn.disabled = false;
     nextBattleBtn.classList.add('hidden');
-    
-    logMessage(`¡Un nuevo Orco de nivel ${enemyLevel} aparece!`);
+    logMessage(`¡Un nuevo Minion de nivel ${enemyLevel} aparece!`);
     updateUI();
 });

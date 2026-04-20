@@ -9,17 +9,50 @@
 </head>
 <body>
     <div class="container" id="selection-screen">
-        <h1>Champ Select</h1>
-        <div class="controls">
-            <button id="btn-select-warrior">AD</button>
-            <button id="btn-select-mage">AP</button>
+        <h1 class="lol-title">CHAMP SELECT</h1>
+        <div class="champion-selection">
+            <div class="selection-card" data-id="garen">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg">
+                <button>GAREN (AD)</button>
+            </div>
+            <div class="selection-card" data-id="darius">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Darius_0.jpg">
+                <button>DARIUS (AD)</button>
+            </div>
+            <div class="selection-card" data-id="ashe">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_0.jpg">
+                <button>ASHE (AD)</button>
+            </div>
+            <div class="selection-card" data-id="yasuo">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_0.jpg">
+                <button>YASUO (AD)</button>
+            </div>
+            <div class="selection-card" data-id="ryze">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ryze_0.jpg">
+                <button>RYZE (AP)</button>
+            </div>
+            <div class="selection-card" data-id="lux">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg">
+                <button>LUX (AP)</button>
+            </div>
+            <div class="selection-card" data-id="ahri">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg">
+                <button>AHRI (AP)</button>
+            </div>
+            <div class="selection-card" data-id="veigar">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Veigar_0.jpg">
+                <button>VEIGAR (AP)</button>
+            </div>
         </div>
     </div>
 
     <div class="container hidden" id="battle-screen">
-        <h1>Summoner´s Rift</h1>
-        <div id="kill-counter" style="margin-bottom: 10px; font-weight: bold; font-size: 1.2rem; color: #f1c40f;">
-            Enemigos derrotados: 0
+        <div class="battle-header">
+            <img src="icon-victory.png" class="title-icon">
+            <h1>Summoner´s Rift</h1>
+        </div>
+        <div id="kill-counter" class="kill-count-lol">
+            Minions Farmeados: 0
         </div>
         <div class="battlefield">
             <div id="player-stats" class="card hero-card"></div>
@@ -28,7 +61,7 @@
         <div class="controls">
             <button id="btn-attack">Ataque Básico</button>
             <button id="btn-ability">Habilidad Especial</button>
-            <button id="btn-next-battle" class="hidden">Siguiente Combate</button>
+            <button id="btn-next-battle" class="hidden btn-blue">Siguiente Combate</button>
         </div>
         <div id="log" class="log-box"></div>
     </div>
