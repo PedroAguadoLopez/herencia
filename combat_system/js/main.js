@@ -12,6 +12,20 @@ let player;
 let enemy;
 let killCount = 0;
 let battleActive = false;
+let currentChampId = '';
+
+const champIcons = {
+    'garen': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Garen.png',
+    'darius': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Darius.png',
+    'ashe': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Ashe.png',
+    'yasuo': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Yasuo.png',
+    'ryze': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Ryze.png',
+    'lux': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Lux.png',
+    'ahri': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Ahri.png',
+    'veigar': 'https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Veigar.png'
+};
+
+const minionIcon = 'minion.jpg';
 
 const selectionScreen = document.getElementById('selection-screen');
 const battleScreen = document.getElementById('battle-screen');
@@ -31,6 +45,7 @@ function getRandomLevel(min, max) {
 function startGame(championId) {
     killCount = 0;
     battleActive = true;
+    currentChampId = championId;
     const playerLevel = getRandomLevel(3, 7);
     const enemyLevel = getRandomLevel(3, 8);
 
@@ -64,15 +79,34 @@ selectionCards.forEach(card => {
 function updateUI() {
     killCounterDisplay.textContent = `Minions Farmeados: ${killCount}`;
     
+    const hpPct = Math.max(0, (player.health / player.maxHealth) * 100);
+    const resPct = Math.max(0, (player.resource / player.maxResource) * 100);
+    const enemyHpPct = Math.max(0, (enemy.health / enemy.maxHealth) * 100);
+    
     playerStats.innerHTML = `
-        <strong>${player.name} (Lvl ${player.level})</strong><br>
-        HP: ${player.health}/${player.maxHealth}<br>
-        ${player.resourceType}: ${player.resource}/${player.maxResource}
+        <div class="combat-entity">
+            <img src="${champIcons[currentChampId]}" class="combat-portrait">
+            <strong>${player.name} (Lvl ${player.level})</strong>
+        </div>
+        <div class="bar-container">
+            <div class="bar health-bar" style="width: ${hpPct}%"></div>
+            <span class="bar-text">${player.health} / ${player.maxHealth} HP</span>
+        </div>
+        <div class="bar-container">
+            <div class="bar resource-bar" style="width: ${resPct}%"></div>
+            <span class="bar-text">${player.resource} / ${player.maxResource} ${player.resourceType}</span>
+        </div>
     `;
     
     enemyStats.innerHTML = `
-        <strong>${enemy.name} (Lvl ${enemy.level})</strong><br>
-        HP: ${enemy.health}/${enemy.maxHealth}
+        <div class="combat-entity">
+            <img src="${minionIcon}" class="combat-portrait enemy-portrait">
+            <strong>${enemy.name} (Lvl ${enemy.level})</strong>
+        </div>
+        <div class="bar-container">
+            <div class="bar enemy-health-bar" style="width: ${enemyHpPct}%"></div>
+            <span class="bar-text">${enemy.health} / ${enemy.maxHealth} HP</span>
+        </div>
     `;
 
     if (battleActive && (!player.isAlive || !enemy.isAlive)) {
@@ -90,6 +124,7 @@ function updateUI() {
             
             logMessage(`¡Victoria! Recuperas ${healAmount} HP y ${resourceAmount} de ${player.resourceType}.`);
             nextBattleBtn.classList.remove('hidden');
+            updateUI();
         } else {
             logMessage("¡Has sido derrotado!");
         }
