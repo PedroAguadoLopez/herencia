@@ -13,35 +13,35 @@
         <div class="champion-selection">
             <div class="selection-card" data-id="garen">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg">
-                <button>GAREN (AD)</button>
+                <button>GAREN</button>
             </div>
             <div class="selection-card" data-id="darius">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Darius_0.jpg">
-                <button>DARIUS (AD)</button>
+                <button>DARIUS</button>
             </div>
             <div class="selection-card" data-id="ashe">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_0.jpg">
-                <button>ASHE (AD)</button>
+                <button>ASHE</button>
             </div>
             <div class="selection-card" data-id="yasuo">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_0.jpg">
-                <button>YASUO (AD)</button>
+                <button>YASUO</button>
             </div>
             <div class="selection-card" data-id="ryze">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ryze_0.jpg">
-                <button>RYZE (AP)</button>
+                <button>RYZE</button>
             </div>
             <div class="selection-card" data-id="lux">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg">
-                <button>LUX (AP)</button>
+                <button>LUX</button>
             </div>
             <div class="selection-card" data-id="ahri">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg">
-                <button>AHRI (AP)</button>
+                <button>AHRI</button>
             </div>
             <div class="selection-card" data-id="veigar">
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Veigar_0.jpg">
-                <button>VEIGAR (AP)</button>
+                <button>VEIGAR</button>
             </div>
         </div>
     </div>
@@ -51,20 +51,56 @@
             <img src="icon-victory.png" class="title-icon">
             <h1>Summoner´s Rift</h1>
         </div>
-        <div id="kill-counter" class="kill-count-lol">
-            Minions Farmeados: 0
+        
+        <div class="hud-bar">
+            <div class="hud-stats">
+                <span class="gold-text">💰 <span id="gold-display">0</span>g</span>
+                <span class="xp-text">🌟 Nivel <span id="lvl-display">1</span> (<span id="xp-display">0</span>/<span id="xp-needed">100</span> XP)</span>
+            </div>
+            <button id="btn-shop" class="btn-shop">ABRIR TIENDA</button>
         </div>
+
+        <div id="kill-counter" class="kill-count-lol">Objetivo: Eliminar Minions</div>
+        
         <div class="battlefield">
             <div id="player-stats" class="card hero-card"></div>
             <div id="enemy-stats" class="card enemy-card"></div>
         </div>
+        
         <div class="controls">
-            <button id="btn-attack">Ataque Básico</button>
-            <button id="btn-ability">Habilidad Especial</button>
-            <button id="btn-next-battle" class="hidden btn-blue">Siguiente Combate</button>
+            <div class="action-buttons">
+                <button id="btn-attack">Ataque Básico</button>
+                <button id="btn-ability">Habilidad <span id="ability-cd" class="cd-text"></span></button>
+            </div>
+            <div class="summoner-spells">
+                <button id="btn-heal" class="spell-btn">Curar <span id="heal-cd" class="cd-text"></span></button>
+                <button id="btn-ignite" class="spell-btn">Prender <span id="ignite-cd" class="cd-text"></span></button>
+            </div>
+            <button id="btn-next-battle" class="hidden btn-blue">Avanzar por la Línea</button>
         </div>
+        
         <div id="log" class="log-box"></div>
     </div>
+
+    <div id="shop-modal" class="shop-modal hidden">
+        <h2>Tienda de Objetos</h2>
+        <div class="shop-items">
+            <div class="shop-item" data-item="potion" data-cost="50">
+                <span>Poción de Vida (+50 HP)</span>
+                <span class="cost">50g</span>
+            </div>
+            <div class="shop-item" data-item="doran" data-cost="450">
+                <span>Espada de Doran (+80 Max HP, +10 Daño Básico)</span>
+                <span class="cost">450g</span>
+            </div>
+            <div class="shop-item" data-item="rabadon" data-cost="1200">
+                <span>Vara Grande (+40 Daño de Habilidad)</span>
+                <span class="cost">1200g</span>
+            </div>
+        </div>
+        <button id="btn-close-shop" class="btn-close-shop">Cerrar</button>
+    </div>
+
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
