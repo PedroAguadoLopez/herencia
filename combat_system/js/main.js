@@ -197,7 +197,7 @@ function spawnEnemy() {
 selectionCards.forEach(card => {
     card.addEventListener('click', () => {
         const id = card.getAttribute('data-id');
-        startGame(id);
+        startGame(id); 
     });
 });
 
