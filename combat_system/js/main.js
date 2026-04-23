@@ -37,11 +37,11 @@ const champIcons = {
 };
 
 const enemyIcons = {
-    'minion': 'minion.jpg',
-    'turret': 'torre.webp',
-    'inhib': 'inhibidor.png',
-    'superminion': 'super_minion.png',
-    'nexus': 'nexo.png'
+    'minion': '../images/minion.jpg',
+    'turret': '../images/torre.webp',
+    'inhib': '../images/inhibidor.png',
+    'superminion': '../images/super_minion.png',
+    'nexus': '../images/nexo.png'
 };
 
 let currentEnemyIcon = enemyIcons['minion'];

@@ -20,7 +20,7 @@ body {
 
 #battle-screen {
     background-image: linear-gradient(rgba(1, 10, 19, 0.6), rgba(1, 10, 19, 0.6)), 
-                      url('../mapa.jpg');
+                      url('../../images/mapa.jpg');
     background-size: cover;
     background-position: center;
     min-height: 700px;
