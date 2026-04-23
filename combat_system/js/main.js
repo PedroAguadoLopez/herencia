@@ -1,3 +1,4 @@
+import { Entity } from './models/entity.js';
 import { Warrior } from './models/garen.js';
 import { Mage } from './models/ryze.js';
 import { Darius } from './models/darius.js';
@@ -76,22 +77,13 @@ setInterval(() => {
     if (updated) checkSpells();
 }, 1000);
 
-class GameStructure {
+class GameStructure extends Entity {
     constructor(name, hp, dmg) {
-        this.name = name;
+        super(name, hp);
         this.level = 'Estructura';
-        this.maxHealth = hp;
-        this.health = hp;
         this.dmg = dmg;
-        this.isAlive = true;
     }
-    takeDamage(dmg) {
-        this.health -= dmg;
-        if (this.health <= 0) {
-            this.health = 0;
-            this.isAlive = false;
-        }
-    }
+
     attack(target) {
         if (this.dmg > 0 && target) {
             target.takeDamage(this.dmg);
@@ -197,7 +189,7 @@ function spawnEnemy() {
 selectionCards.forEach(card => {
     card.addEventListener('click', () => {
         const id = card.getAttribute('data-id');
-        startGame(id); 
+        startGame(id);
     });
 });
 
